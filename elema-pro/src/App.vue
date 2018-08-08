@@ -9,15 +9,10 @@
 import navApp from "./components/common/navApp.vue";
 export default {
   components:{
-    navApp
+    navApp,
   }
 }
 </script>
 
 <style>
-#app{
-  width: 100%;
-  height: 100%;
-}
-
 </style>

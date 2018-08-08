@@ -25,6 +25,7 @@ export function getBannerHomeData(){
 //请求优惠专区数据
 export function getDiscountHomeData(){
     return new Promise((resolve,reject)=>{
+        let reg = /\w*/g;
         axios.get('/restapi/shopping/openapi/entries?latitude=22.547&longitude=114.085947&templates[]=main_template&templates[]=favourable_template&templates[]=svip_template&terminal=h5')
         .then(response=>{
             let data = response.data[1].entries.map(item=>{
@@ -33,12 +34,10 @@ export function getDiscountHomeData(){
                     description:item.description,
                     name:item.name,
                     image:item.image_hash,
-                    more:item.more
+                    population:item.more.split(',')[3].match(reg)[4]
                 } 
             })
-            
-            resolve(data)
-            
+            resolve(data)   
         })
         .catch(error=>{
             console.log('失败')

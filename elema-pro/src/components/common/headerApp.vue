@@ -1,6 +1,6 @@
 <template>
      <div class="header">
-         <b class="iconfont icon-zuo"></b><span></span>
+         <b class="iconfont icon-zuo"></b><span>发现</span>
      </div>
 </template>
 
@@ -22,6 +22,16 @@ export default {
 }
 .header b{
     line-height: 40px;
-    padding-left:10px; 
+    padding-left:10px;
+    color: #fff; 
+}
+.header span{
+    color:#fff;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
 </style>
