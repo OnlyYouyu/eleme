@@ -1,5 +1,6 @@
 <template>
     <div id="home">
+        
         <header class="home-header" @click="addressPage">
             <b class="header-icon iconfont icon-dingwei"></b>
             <p>选择收货地址</p>
@@ -10,6 +11,7 @@
                 <b class="search-icon iconfont icon-search"></b>搜索饿了么商家、商品名称
             </router-link>
         </div>
+        <div class="page-scroll">
         <page>
             <banner :data="{BannerOneData,BanneTwoData}"></banner>
             <div class="discount">
@@ -32,7 +34,8 @@
                 <b class="after"></b>
             </div> 
         </page>
-               
+    </div>
+
     </div>
 </template>
 
@@ -85,6 +88,13 @@ export default {
     line-height: 50px;
     box-sizing: border-box;
     padding-left: 3%;
+}
+.page-scroll{
+    width: 100%;
+    position: absolute;
+    top: 82.5px;
+    left: 0;
+    bottom: 0;
 }
 .header-icon{
     font-size: 12px;
