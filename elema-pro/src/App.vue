@@ -1,23 +1,22 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <navShopList/>
+    <textVue/>
     <router-view/>
   </div>
 </template>
 
 <script>
+import navShopList from './components/common/navShopList'
+import textVue from './page/home/shopDetailed'
 export default {
-  name: 'App'
+  components: {
+    navShopList,
+   textVue
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
