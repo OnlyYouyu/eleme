@@ -9,7 +9,7 @@
         </div>
         <div class="search">
             <div class="select-address">
-                <span>深圳</span>
+                <span>{{$store.state.cityName}}</span>
                 <b class="city-icon iconfont icon-sanjiao" @click="showPaga"></b>
             </div>
             <div class="address-input">
@@ -25,8 +25,7 @@
             <b class="switch-icon iconfont icon-zuo" @click="cityShowPaga"></b>
             <span>城市选择</span>
         </header>
-        <!-- <page> -->
-        <div>    
+
         <div class="city-search">
             <b class="city-input-icon iconfont icon-search"></b>
             <input type="text" placeholder="输入城市名、拼音或首字母查询">
@@ -34,21 +33,19 @@
         
         <div class="city-list">
              <ul class="letter-list">
-                <li v-for="(item,key) in citiesData"  :key="item.id">
+                <li v-for="(item,key) in citiesData"  :key="key" @click="changeHeight(key)">
                      {{key}}
                 </li>
              </ul>
-            <page>
-            <div v-for="(value,key) in citiesData"  :key="value.id" class="list">
+            <page ref="page1">
+            <div v-for="(value,key) in citiesData"  :key="value.id" class="list" :ref="key">
                     <p  class="value-key">{{key}}</p>
                     <ul>
-                        <li v-for="item in value" :key="item.id">{{item.name}}</li>
+                        <li v-for="item in value" :key="item.id" @click="cityChange(item.name)">{{item.name}}</li>
                     </ul>
             </div>
             </page>  
         </div>
-       </div>
-        <!-- </page>  -->
     </div>
 </div>    
 </template>
@@ -58,12 +55,13 @@ import { getAddressData } from "../../../services/addressServices.js";
 import Page from "../../common/page.vue";
 export default {
     components:{
+        
         Page,
     },
     data(){
         return{
             citiesData:{},
-            isShow:true
+            isShow:true,
         }
     },
   methods:{
@@ -72,10 +70,21 @@ export default {
       },
       cityShowPaga(){
           this.isShow=true;
-      }
-
+      },
+      changeHeight(key){
+          this.$center.$emit('toScroll',this.$refs[key][0].offsetTop)
+      },
+      cityChange(city){
+        //  this.$store.state.cityName = city
+          this.$store.commit('changeCityName',city)
+          this.$router.back()  
+      } 
   },
   mounted(){
+      this.$center.$on('select-city',(result)=>{
+          console.log(result)
+          this.Choice = result;
+      })
       getAddressData().then(result=>{
           this.citiesData = result;
       })
@@ -131,13 +140,18 @@ export default {
     display: flex;
     align-items: center; 
 }
+.city-icon{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+}
 .select-address{
-    padding: 0 10px; 
+    padding:0 10px; 
 }
 .search input{
     border: none;
     outline: none;
-    padding: 2.4vw 15.8vw 2.4vw 6.666667vw;
+    padding: 2.4vw 12.8vw 2.4vw 6.666667vw;
     background: #f2f2f2;
     -webkit-appearance: none
 }

@@ -1,7 +1,12 @@
 <template>
-     <div class="header">
-         <b class="iconfont icon-zuo"></b><span>{{$store.state.headerName}}</span>
-     </div>
+    <div class="childrenHeader">
+
+            <router-link to="/home">
+               <b class="return-icon iconfont icon-zuo"></b> 
+            </router-link>
+            <span>{{$store.state.headerName}}</span>
+
+    </div>
 </template>
 
 <script>
@@ -11,21 +16,21 @@ export default {
 </script>
 
 <style scoped>
-.header{
+.childrenHeader{
     width: 100%;
     height: 40px;
-    background: #2395ff;
+    background:#00a7ff;
     position: absolute;
     left: 0;
     top: 0;
-    box-sizing: border-box;
+
 }
-.header b{
+.childrenHeader b{
     line-height: 40px;
     padding-left:10px;
     color: #fff; 
 }
-.header span{
+.childrenHeader span{
     color:#fff;
     font-size: 16px;
     font-weight: 700;
@@ -34,4 +39,5 @@ export default {
     top: 50%;
     transform: translate(-50%,-50%);
 }
+
 </style>

@@ -3,9 +3,11 @@
     <div class="swiper-wrapper">
         <div class="swiper-slide">
                 <router-link class="title" 
-                v-for="item in data.BannerOneData" :key="item.id" to = "">
+                v-for="item in data.BannerOneData" :key="item.id" to = "/home/food">
+                <div @click="changeName(item.name)">
                 <img :src="item.image | formateImg"/>
-                <p>{{item.name}}</p>
+                <p :ref="item.name">{{item.name}}</p>
+                </div>
                 </router-link>
         </div>
         <div class="swiper-slide">
@@ -27,6 +29,11 @@ export default {
     props:{
          data:Object
     },
+    methods:{
+        changeName(name){
+            this.$store.commit('foodName',name)
+        }
+    },    
     mounted(){
         this.bannerSwiper = new Swiper(this.$refs.banner, {
             loop: true,

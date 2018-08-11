@@ -8,6 +8,8 @@ import Order from "../pages/order/index.vue";
 import Mine from "../pages/mine/index.vue";
 import Search from "../components/home/Search/homeSearch.vue";
 import AddressPage from "../components/home/addressPage/AddressPage.vue";
+import FoodPage from "../components/home/foodPage/food.vue";
+
 export default new Router({
   routes: [
     {
@@ -40,6 +42,11 @@ export default new Router({
       path: '/addresspage',
       name: 'addresspage',
       component: AddressPage
-    }
+    },
+    {
+      path:'/home/food',
+      name:'food',
+      component:FoodPage
+     }
   ]
 })

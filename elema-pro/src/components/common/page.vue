@@ -10,16 +10,32 @@
 
 <script>
 export default {
-      mounted(){
+    props: {
+        onScroll: Function
+    },
+    methods: {
+        refreshDOM(){
+            this.scroll.refresh();
+        }
+    },
+    mounted(){
         //创建滚动视图，让页面可以滚动
-        let scroll = new IScroll(this.$refs.page);
-        // scroll.on('beforeScrollStart', ()=>{
-        //     scroll.refresh();
-        //     probeType:3;
-        // });
-        // scroll.on('scroll',()=>{
-        //     console.log(scroll.y)
-        // })
+        let scroll = new IScroll(this.$refs.page,{
+            probeType:this.onScroll ? 3 : 0,
+    });
+    this.scroll = scroll
+        scroll.on('beforeScrollStart', ()=>{
+            scroll.refresh();
+    });
+     scroll.on('scroll', ()=>{
+            let disY = scroll.y-scroll.maxScrollY;
+            this.onScroll(disY);
+        });
+    this.$center.$on('toScroll',scroll=>{
+            // console.log(scroll)
+            this.scroll.scrollTo(0,-scroll)
+        })
+        
     }  
 }
 

@@ -1,9 +1,9 @@
 <template>
     <div id="home">
-        
+         <div>
         <header class="home-header" @click="addressPage">
             <b class="header-icon iconfont icon-dingwei"></b>
-            <p>选择收货地址</p>
+            <p>{{$store.state.cityName}}</p>
             <b class="header-icon-after iconfont icon-sanjiao"></b>
         </header>
         <div class="search">
@@ -33,9 +33,11 @@
                 推荐商家
                 <b class="after"></b>
             </div> 
+            <h1 class="go"></h1>
         </page>
     </div>
-
+    </div>
+   <router-view></router-view>
     </div>
 </template>
 
@@ -50,9 +52,9 @@ export default {
     },
     data(){
         return{
-              BannerOneData:[],
-              BanneTwoData:[],
-              DiscountData:[],  
+            BannerOneData:[],
+            BanneTwoData:[],
+            DiscountData:[],  
         }
     },
     methods:{
@@ -63,14 +65,12 @@ export default {
         }
     },
     mounted(){
+         
         getBannerHomeData().then(result=>{
-            console.log(this.BannerOneData = result.slice(0,10))
-            console.log(this.BanneTwoData  =result.slice(10,13))
           this.BannerOneData = result.slice(0,10);
           this.BanneTwoData  =result.slice(10,13)
        });
        getDiscountHomeData().then(result=>{
-           console.log(result)
            this.DiscountData = result
        })
 
@@ -79,6 +79,9 @@ export default {
 </script>
 
 <style scoped>
+.go{
+    height: 1000px;
+}
 .home-header{
     width: 100%;
     height: 40px;
