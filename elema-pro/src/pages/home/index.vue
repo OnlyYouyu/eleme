@@ -32,10 +32,14 @@
                 <b class="before"></b>
                 推荐商家
                 <b class="after"></b>
-            </div> 
-            <h1 class="go"></h1>
+            </div>
+            <div>
+            <shop-List></shop-List>
+            <shop-deta></shop-deta>
+            </div>
         </page>
     </div>
+    keep-alive
     </div>
    <router-view></router-view>
     </div>
@@ -45,10 +49,14 @@
 import Banner from "../../components/home/index/banner.vue";
 import Page from "../../components/common/page.vue";
 import {getBannerHomeData, getDiscountHomeData} from "../../services/commodityServices.js";
+import ShopDeta from"../../components/home/shopDetailed.vue";
+import ShopList from "../../components/common/navShopList.vue";
 export default {
      components:{
         Banner,
         Page,
+        ShopDeta,
+        ShopList
     },
     data(){
         return{
@@ -193,12 +201,13 @@ export default {
 }
 .recommend .before{
     position: absolute;
-    left:103px;
+    left:35%;
     top:15px;
+    /* transform: translateX(-60%) */
 }
 .recommend .after{
     position: absolute;
-    left:193px;
+    left:60%;
     top:15px;
 }
 </style>

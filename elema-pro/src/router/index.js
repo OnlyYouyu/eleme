@@ -10,6 +10,9 @@ import Search from "../components/home/Search/homeSearch.vue";
 import AddressPage from "../components/home/addressPage/AddressPage.vue";
 import FoodPage from "../components/home/foodPage/food.vue";
 
+import Full from '../components/home/shopFull.vue'
+
+
 export default new Router({
   routes: [
     {
@@ -47,6 +50,11 @@ export default new Router({
       path:'/home/food',
       name:'food',
       component:FoodPage
-     }
+     },
+    {
+    path: '/full',
+    name: 'full',
+    component: Full
+   }
   ]
 })
